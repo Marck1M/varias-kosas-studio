@@ -1,5 +1,5 @@
 export function generalAlert(title, text, icon){
-    Swal.fire({
+Swal.fire({
   title,
   text,
   icon
