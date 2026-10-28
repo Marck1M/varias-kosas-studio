@@ -1,17 +1,20 @@
 import { buscarUsuario } from "../models/UsuarioModel.js";
 import { generalAlert } from "../helpers/alerts.js";
+import { setLocalStorage } from "../helpers/local-storage.js";
+import { verificarSesion } from "../helpers/generators.js";
 
 function iniciarSesion(){
     let correo = document.querySelector("#correo").value 
     let contrasena = document.querySelector("#clave").value
-
     let auth = buscarUsuario(correo, contrasena)
     if(auth){
+        setLocalStorage("usuario", auth)
         generalAlert("Bienvenido al sistema ", "SERA REDIRECCIONADO al catalogo de cosas", "success ")
         setTimeout(()=>{
             return window.location.href = "/views/pages/cosas-view-catalogo.html"
             
         }, 2000)
+        return
     }
     generalAlert("error", "usuario o contraseña incorrecto", "error")
     setTimeout(()=>{
